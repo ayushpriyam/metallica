@@ -5,12 +5,14 @@ package com.metallica.refData.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
  * @author ayupriya
@@ -20,7 +22,7 @@ import javax.persistence.OneToOne;
 public class User implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "U_ID")
 	private int userId;
 	@Column(name = "U_NAME")
@@ -31,8 +33,9 @@ public class User implements Serializable {
 	private String userEmail;
 	@Column(name = "U_GENDER")
 	private String userGender;
-	
-	@OneToOne
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
 	private Login login;
 
 	/**
